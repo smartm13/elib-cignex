@@ -3,12 +3,20 @@ package controller;
 
 import java.sql.*;
 import java.util.*;
+
+import javax.sql.DataSource;
+
 import controller.DAO.Books;
+
 public class BooksDTO {
 
 
 
-     
+	private DataSource dataSource;
+
+	public BooksDTO(DataSource theDataSource) {
+		dataSource = theDataSource;
+	}
     public Books createValueObject() {
           return new Books(0, null, 0, 0, 0);
     }
