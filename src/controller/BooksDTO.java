@@ -17,6 +17,9 @@ public class BooksDTO {
 	public BooksDTO(DataSource theDataSource) {
 		dataSource = theDataSource;
 	}
+	
+		
+	
     public Books createValueObject() {
           return new Books(0, null, 0, 0, 0);
     }
@@ -24,7 +27,7 @@ public class BooksDTO {
 
      
     public Books getObject(Connection conn, int bid) throws NotFoundException, SQLException {
-
+    	conn = dataSource.getConnection();	
           Books valueObject = createValueObject();
           valueObject.setBid(bid);
           load(conn, valueObject);
@@ -34,7 +37,7 @@ public class BooksDTO {
 
      
     public void load(Connection conn, Books valueObject) throws NotFoundException, SQLException {
-
+    	conn = dataSource.getConnection();
           String sql = "SELECT * FROM books WHERE (bid = ? ) "; 
           PreparedStatement stmt = null;
 
@@ -53,7 +56,7 @@ public class BooksDTO {
 
      
     public List<Books> loadAll(Connection conn) throws SQLException {
-
+    	conn = dataSource.getConnection();
           String sql = "SELECT * FROM books ORDER BY bid ASC ";
           List<Books> searchResults = listQuery(conn, conn.prepareStatement(sql));
 
@@ -64,7 +67,7 @@ public class BooksDTO {
 
      
     public synchronized void create(Connection conn, Books valueObject) throws SQLException {
-
+    	conn = dataSource.getConnection();
           String sql = "";
           PreparedStatement stmt = null;
           ResultSet result = null;
@@ -98,7 +101,7 @@ public class BooksDTO {
      
     public void save(Connection conn, Books valueObject) 
           throws NotFoundException, SQLException {
-
+    	conn = dataSource.getConnection();
           String sql = "UPDATE books SET name = ?, isbn = ?, pid = ?, "
                + "price = ? WHERE (bid = ? ) ";
           PreparedStatement stmt = null;
@@ -131,7 +134,7 @@ public class BooksDTO {
      
     public void delete(Connection conn, Books valueObject) 
           throws NotFoundException, SQLException {
-
+    	conn = dataSource.getConnection();
           String sql = "DELETE FROM books WHERE (bid = ? ) ";
           PreparedStatement stmt = null;
 
@@ -157,7 +160,7 @@ public class BooksDTO {
 
      
     public void deleteAll(Connection conn) throws SQLException {
-
+    	conn = dataSource.getConnection();
           String sql = "DELETE FROM books";
           PreparedStatement stmt = null;
 
@@ -173,7 +176,7 @@ public class BooksDTO {
 
      
     public int countAll(Connection conn) throws SQLException {
-
+    	conn = dataSource.getConnection();
           String sql = "SELECT count(*) FROM books";
           PreparedStatement stmt = null;
           ResultSet result = null;
@@ -197,7 +200,7 @@ public class BooksDTO {
 
      
     public List<?> searchMatching(Connection conn, Books valueObject) throws SQLException {
-
+    	conn = dataSource.getConnection();
           List<?> searchResults;
 
           boolean first = true;
@@ -244,7 +247,7 @@ public class BooksDTO {
 
      
     protected int databaseUpdate(Connection conn, PreparedStatement stmt) throws SQLException {
-
+    	conn = dataSource.getConnection();
           int result = stmt.executeUpdate();
 
           return result;
@@ -257,7 +260,7 @@ public class BooksDTO {
           throws NotFoundException, SQLException {
 
           ResultSet result = null;
-
+          conn = dataSource.getConnection();
           try {
               result = stmt.executeQuery();
 
@@ -283,7 +286,7 @@ public class BooksDTO {
 
      
     protected List<Books> listQuery(Connection conn, PreparedStatement stmt) throws SQLException {
-
+    	conn = dataSource.getConnection();
           ArrayList searchResults = new ArrayList();
           ResultSet result = null;
 
