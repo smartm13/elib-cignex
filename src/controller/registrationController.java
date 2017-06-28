@@ -19,7 +19,7 @@ import controller.DAO.login;
 /**
  * Servlet implementation class r_get
  */
-@WebServlet("/r_get")
+@WebServlet("/registrationController")
 public class registrationController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -67,8 +67,7 @@ public class registrationController extends HttpServlet {
 		login login1 = new login(0, fname, email,pass);
 		try {
 			studentDTO.addStudent(login1);
-			
-			PrintWriter out =response.getWriter();
+			response.sendRedirect("login.jsp");
 			
 			
 		} catch (Exception e) {

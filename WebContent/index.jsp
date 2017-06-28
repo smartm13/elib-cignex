@@ -13,6 +13,5 @@
 	<a href="reg.jsp">Register</a><br><br>
 	<a href="Book.jsp">Search</a><br><br>
 	</div>
-	
 </body>
 </html>

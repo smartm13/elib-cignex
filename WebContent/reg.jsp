@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="r_get" method="get">
+<form action="registrationController" method="get">
 	Enter Your email<input type="text" name="em"><br>
 	Enter Your password<input type="password" name="pw">
 	Enter Your First Name<input type="text" name="fn">

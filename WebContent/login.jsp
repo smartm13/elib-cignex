@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="get" method="post">
+<form action="loginController" method="post">
 	Enter Your email <input type="text" name="em"><br><br>
 	Enter Your Password<input type="password" name="pw">
 	<input type="submit" value="Submit">
