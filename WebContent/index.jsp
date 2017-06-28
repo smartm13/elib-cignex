@@ -7,9 +7,12 @@
 <title>Title2</title>
 </head>
 <body>
-	<a href="login.jsp">Login</a>
-	<a href="reg.jsp">Register</a>
-	
+
+<div style="width:900px;height:600px;border:1px solid black; ">
+	<a href="login.jsp">Login</a><br><br>
+	<a href="reg.jsp">Register</a><br><br>
+	<a href="Book.jsp">Search</a><br><br>
+	</div>
 	
 </body>
 </html>

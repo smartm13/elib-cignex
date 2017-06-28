@@ -7,18 +7,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form>
+	<form action="search">
 	Search By
 		<select name="search">
-			<option value="name"></option>			
-			<option value="isbn"></option>		
-				
-			
-		</select>
-	 		 
-	
-	
-	
+			<option value="name">Name</option>			
+			<option value="isbn">ISBN</option>				
+		</select> 
+		<input type="text" name="param">
+		<input type="submit">
 	</form>
 </body>
 </html>

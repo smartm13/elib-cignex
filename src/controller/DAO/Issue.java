@@ -2,7 +2,6 @@ package controller.DAO;
 
 
 
-import java.io.*;
 
 public class Issue {
 

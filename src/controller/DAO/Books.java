@@ -11,7 +11,11 @@ public class Books {
 
 
 
-    public Books(int bid, String name, long isbn, int pid, int price) {
+    public Books() {
+		super();
+	}
+
+	public Books(int bid, String name, long isbn, int pid, int price) {
 		super();
 		this.bid = bid;
 		this.name = name;
@@ -63,17 +67,11 @@ public class Books {
   
     public String toString() {
         StringBuffer out = new StringBuffer(" ");
-        out.append("\nclass Books, mapping to table books\n");
-        out.append("Persistent attributes: \n"); 
         out.append("bid = " + this.bid + "\n"); 
         out.append("name = " + this.name + "\n"); 
         out.append("isbn = " + this.isbn + "\n"); 
         out.append("pid = " + this.pid + "\n"); 
         out.append("price = " + this.price + "\n"); 
         return out.toString();
-    }
-
-
-     
-    
+    }    
 }

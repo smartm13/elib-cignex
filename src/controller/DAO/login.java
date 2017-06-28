@@ -4,14 +4,16 @@ public class login {
 	
 	private int id;
 	private String pass;
+	private String firstName;
+	private String email;
+	
+	
 	public String getPass() {
 		return pass;
 	}
 	public void setPass(String pass) {
 		this.pass = pass;
 	}
-	private String firstName;
-	private String email;
 	public int getId() {
 		return id;
 	}
@@ -30,6 +32,8 @@ public class login {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	
 	public login(int id ,String firstName,  String email,String pass) {
 		this.firstName = firstName;
 		this.id = id;

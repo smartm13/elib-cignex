@@ -40,10 +40,10 @@ public class IssueDao {
 
 
      
-    public List loadAll(Connection conn) throws SQLException {
+    public List<Issue> loadAll(Connection conn) throws SQLException {
 
           String sql = "SELECT * FROM issue ORDER BY iid ASC ";
-          List searchResults = listQuery(conn, conn.prepareStatement(sql));
+          List<Issue> searchResults = listQuery(conn, conn.prepareStatement(sql));
 
           return searchResults;
     }
@@ -55,7 +55,6 @@ public class IssueDao {
 
           String sql = "";
           PreparedStatement stmt = null;
-          ResultSet result = null;
 
           try {
                sql = "INSERT INTO issue ( iid, sid, bid, "
@@ -236,7 +235,7 @@ public class IssueDao {
            
            
           if (first)
-               searchResults = new ArrayList();
+               searchResults = new ArrayList<Object>();
           else
                searchResults = listQuery(conn, conn.prepareStatement(sql.toString()));
 
@@ -293,9 +292,9 @@ public class IssueDao {
 
 
      
-    protected List listQuery(Connection conn, PreparedStatement stmt) throws SQLException {
+    protected List<Issue> listQuery(Connection conn, PreparedStatement stmt) throws SQLException {
 
-          ArrayList searchResults = new ArrayList();
+          ArrayList<Issue> searchResults = new ArrayList<Issue>();
           ResultSet result = null;
 
           try {
@@ -322,7 +321,7 @@ public class IssueDao {
                   stmt.close();
           }
 
-          return (List)searchResults;
+          return (List<Issue>)searchResults;
     }
 
 

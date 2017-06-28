@@ -4,6 +4,7 @@ package controller;
 import java.sql.*;
 import java.util.*;
 
+import javax.annotation.Resource;
 import javax.sql.DataSource;
 
 import controller.DAO.Books;
@@ -11,23 +12,21 @@ import controller.DAO.Books;
 public class BooksDTO {
 
 
-
+	@Resource(name="jdbc/library_system")
 	private DataSource dataSource;
-
+	
 	public BooksDTO(DataSource theDataSource) {
 		dataSource = theDataSource;
 	}
+    
 	
-		
-	
-    public Books createValueObject() {
+	public Books createValueObject() {
           return new Books(0, null, 0, 0, 0);
     }
 
-
-     
+    
     public Books getObject(Connection conn, int bid) throws NotFoundException, SQLException {
-    	conn = dataSource.getConnection();	
+    	  conn = dataSource.getConnection();	
           Books valueObject = createValueObject();
           valueObject.setBid(bid);
           load(conn, valueObject);
@@ -37,7 +36,7 @@ public class BooksDTO {
 
      
     public void load(Connection conn, Books valueObject) throws NotFoundException, SQLException {
-    	conn = dataSource.getConnection();
+    	  conn = dataSource.getConnection();
           String sql = "SELECT * FROM books WHERE (bid = ? ) "; 
           PreparedStatement stmt = null;
 
@@ -70,7 +69,6 @@ public class BooksDTO {
     	conn = dataSource.getConnection();
           String sql = "";
           PreparedStatement stmt = null;
-          ResultSet result = null;
 
           try {
                sql = "INSERT INTO books ( bid, name, isbn, "
@@ -166,7 +164,6 @@ public class BooksDTO {
 
           try {
               stmt = conn.prepareStatement(sql);
-              int rowcount = databaseUpdate(conn, stmt);
           } finally {
               if (stmt != null)
                   stmt.close();
@@ -197,12 +194,12 @@ public class BooksDTO {
           return allRows;
     }
 
-
-     
-    public List<?> searchMatching(Connection conn, Books valueObject) throws SQLException {
-    	conn = dataSource.getConnection();
+    
+    
+	@SuppressWarnings("rawtypes")
+	public List<?> searchMatching(Connection conn, Books valueObject) throws SQLException {
+    	  conn = dataSource.getConnection();
           List<?> searchResults;
-
           boolean first = true;
           StringBuffer sql = new StringBuffer("SELECT * FROM books WHERE 1=1 ");
 
@@ -243,9 +240,9 @@ public class BooksDTO {
 
           return searchResults;
     }
-
-
-     
+    
+    
+    
     protected int databaseUpdate(Connection conn, PreparedStatement stmt) throws SQLException {
     	conn = dataSource.getConnection();
           int result = stmt.executeUpdate();
@@ -253,9 +250,9 @@ public class BooksDTO {
           return result;
     }
 
-
-
-     
+    
+  
+    
     protected void singleQuery(Connection conn, PreparedStatement stmt, Books valueObject) 
           throws NotFoundException, SQLException {
 
@@ -287,7 +284,7 @@ public class BooksDTO {
      
     protected List<Books> listQuery(Connection conn, PreparedStatement stmt) throws SQLException {
     	conn = dataSource.getConnection();
-          ArrayList searchResults = new ArrayList();
+          ArrayList<Books> searchResults = new ArrayList<Books>();
           ResultSet result = null;
 
           try {
@@ -312,7 +309,7 @@ public class BooksDTO {
                   stmt.close();
           }
 
-          return (List)searchResults;
+          return (List<Books>)searchResults;
     }
 
 

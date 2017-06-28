@@ -2,8 +2,6 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
@@ -11,22 +9,26 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
-import controller.studentDTO;
+import org.apache.catalina.Session;
+
 import controller.DAO.login;
 
 /**
- * Servlet implementation class get
+ * Servlet implementation class r_get
  */
-@WebServlet("/get")
-public class get extends HttpServlet {
+@WebServlet("/r_get")
+public class registrationController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+       
     /**
-     * Default constructor. 
+     * @see HttpServlet#HttpServlet()
      */
 	
+	
+
 	private studentDTO studentDTO;
 	
 	@Resource(name="jdbc/library_system")
@@ -45,7 +47,8 @@ public class get extends HttpServlet {
 			throw new ServletException(exc);
 		}
 	}
-    public get() {
+    public registrationController() {
+        super();
         // TODO Auto-generated constructor stub
     }
 
@@ -54,7 +57,23 @@ public class get extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		String email=request.getParameter("em");
+		String pass=request.getParameter("pw");
+		String fname=request.getParameter("fn");
+		
+		
+		login login1 = new login(0, fname, email,pass);
+		try {
+			studentDTO.addStudent(login1);
+			
+			PrintWriter out =response.getWriter();
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 		
 	}
 
 	/**
@@ -62,33 +81,7 @@ public class get extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//doGet(request, response);
-		String email=request.getParameter("em");
-		String pass=request.getParameter("pw");
-		
-		PrintWriter out = response.getWriter();
-		
-		login login1;
-		
-		try {
-			
-			login1 = studentDTO.getUser(email, pass);
-			if(login1 == null )
-			{
-				out.println("Your email 0R password is wrong ");
-			}
-			else
-			{
-				out.print("/Dashboard");
-			}
-			
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			
-		} 
-		
-		
+		doGet(request, response);
 	}
 
 }
