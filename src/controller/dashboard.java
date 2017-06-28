@@ -7,7 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import controller.DAO.*;
+import controller.IssueDao;
+import controller.DAO.Issue;
 
 /**
  * Servlet implementation class dashboard
@@ -30,7 +31,10 @@ public class dashboard extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
-		String sid = request.getParameter("sid");
+		int sid = Integer.parseInt(request.getParameter("sid"));
+		Issue is = new Issue(0, sid, 0, 0, null, null, false);
+		
+		
 	}
 
 }
