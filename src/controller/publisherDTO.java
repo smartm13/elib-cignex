@@ -5,14 +5,34 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-
+import javax.annotation.Resource;
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 import javax.sql.DataSource;
+
 
 import controller.DAO.publisher;
 
 public class publisherDTO {
-
+	
+//	@Resource(name="jdbc/library_system")
 	private DataSource dataSource;
+
+	public publisherDTO() {
+		Context initContext;
+		try {
+			initContext = new InitialContext();
+			Context envContext  = (Context) initContext.lookup("java:/comp/env");
+			DataSource ds = (DataSource) envContext.lookup("jdbc/library_system");
+			dataSource=ds;
+		} catch (NamingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		}
+
 
 	public publisherDTO(DataSource theDataSource) {
 		dataSource = theDataSource;
@@ -52,7 +72,7 @@ public class publisherDTO {
 			// add it to the list of students
 			publisher_list.add(tempStudent);				
 		}
-		
+		System.out.println("pubLen="+publisher_list.size());
 		return publisher_list;		
 	}
 	finally {

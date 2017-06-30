@@ -130,15 +130,17 @@ public class bookController extends HttpServlet {
 		String name = request.getParameter("name1");
 		String isbn = request.getParameter("isbn");
 		String price= request.getParameter("price");
+		String pid= request.getParameter("pid");
 		int i1 = Integer.parseInt(isbn);
 		int i2 = Integer.parseInt(price);
+		int i3 = Integer.parseInt(pid);
 		
 		Books book = new Books();
 		
 		     book.setName(name);
 			 book.setIsbn(i1);
 			 book.setPrice(i2);
-	
+			 book.setPid(i3);
 		PrintWriter out = response.getWriter();
 		Connection conn = null;
 		try {

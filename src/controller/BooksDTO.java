@@ -72,14 +72,14 @@ public class BooksDTO {
           
           try {
                sql = "INSERT INTO books ( bid, name, isbn, "
-               + "pid, price) VALUES (1+MAX(bid) from books, ?, ?, ?, ?) ";
+               + "pid, price) select 1+MAX(bid),?,?,?,? from books ";
                stmt = conn.prepareStatement(sql);
 
 //               stmt.setInt(1, valueObject.getBid()); 
-               stmt.setString(2, valueObject.getName()); 
-               stmt.setLong(3, valueObject.getIsbn()); 
-               stmt.setInt(4, valueObject.getPid()); 
-               stmt.setInt(5, valueObject.getPrice()); 
+               stmt.setString(1, valueObject.getName()); 
+               stmt.setLong(2, valueObject.getIsbn()); 
+               stmt.setInt(3, valueObject.getPid()); 
+               stmt.setInt(4, valueObject.getPrice()); 
 
                int rowcount = databaseUpdate(conn, stmt);
                if (rowcount != 1) {
