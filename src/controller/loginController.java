@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 import javax.annotation.Resource;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -36,7 +37,6 @@ public class loginController extends HttpServlet {
 	public void init() throws ServletException {
 		super.init();
 		
-		// create our student db util ... and pass in the conn pool / datasource
 		try {
 			studentDTO = new studentDTO(dataSource);
 		}
@@ -68,6 +68,8 @@ public class loginController extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		HttpSession userSession=request.getSession();
 		userSession.setAttribute("loggedUser", email);	
+		userSession.getServletContext();
+		
 		
 		login login1;
 		
@@ -80,11 +82,12 @@ public class loginController extends HttpServlet {
 			}
 			else
 			{
-				out.print("/Dashboard");
+			
+				RequestDispatcher dispatcher = request.getRequestDispatcher("dashboard");
+				dispatcher.forward(request, response);			
 			}
 			
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			
 		} 
