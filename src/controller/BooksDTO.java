@@ -69,13 +69,13 @@ public class BooksDTO {
     	conn = dataSource.getConnection();
           String sql = "";
           PreparedStatement stmt = null;
-
+          
           try {
                sql = "INSERT INTO books ( bid, name, isbn, "
-               + "pid, price) VALUES (?, ?, ?, ?, ?) ";
+               + "pid, price) VALUES (1+MAX(bid) from books, ?, ?, ?, ?) ";
                stmt = conn.prepareStatement(sql);
 
-               stmt.setInt(1, valueObject.getBid()); 
+//               stmt.setInt(1, valueObject.getBid()); 
                stmt.setString(2, valueObject.getName()); 
                stmt.setLong(3, valueObject.getIsbn()); 
                stmt.setInt(4, valueObject.getPid()); 
