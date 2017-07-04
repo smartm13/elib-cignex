@@ -72,7 +72,7 @@ public class publisherDTO {
 			// add it to the list of students
 			publisher_list.add(tempStudent);				
 		}
-		System.out.println("pubLen="+publisher_list.size());
+//		System.out.println("pubLen="+publisher_list.size());
 		return publisher_list;		
 	}
 	finally {

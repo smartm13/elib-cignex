@@ -5,6 +5,9 @@ import java.sql.*;
 import java.util.*;
 
 import javax.annotation.Resource;
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import controller.DAO.Books;
@@ -20,6 +23,21 @@ public class BooksDTO {
 	}
     
 	
+	public BooksDTO() {
+		Context initContext;
+		try {
+			initContext = new InitialContext();
+			Context envContext  = (Context) initContext.lookup("java:/comp/env");
+			DataSource ds = (DataSource) envContext.lookup("jdbc/library_system");
+			dataSource=ds;
+		} catch (NamingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		}
+
+
 	public Books createValueObject() {
           return new Books(0, null, 0, 0, 0);
     }

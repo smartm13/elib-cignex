@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-						<form action="bookController">
+						<form action="bookController" method="post">
 						<input type="hidden" name="c" value="search" />	
 						<strong>Search By </strong>&nbsp;&nbsp;&nbsp;&nbsp;
 						<select name="search">

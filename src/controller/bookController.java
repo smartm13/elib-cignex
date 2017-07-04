@@ -110,13 +110,16 @@ public class bookController extends HttpServlet {
 			 book.setIsbn(i1);	
 		}
 		PrintWriter out = response.getWriter();
-	    List<?> A = new ArrayList<>();
+		response.setContentType("text/html");
+		List<?> A = new ArrayList<>();
 		Connection conn = null;
 		try {
 			A = BooksDO.searchMatching(conn, book);
 			for(int i =0 ;i<A.size();i++)
 			{
-				out.println(A.get(i));
+				Books b=(Books) A.get(i);
+			
+				out.println("<br><a href='BookInfo?bid="+b.getBid()+"'>"+b.getName()+"</a>");
 			}
 			}		
 		catch (SQLException e) {

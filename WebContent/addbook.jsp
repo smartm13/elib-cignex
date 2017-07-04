@@ -17,15 +17,15 @@ pageContext.setAttribute("got", got);
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>ADD NEW BOOK</title>
 </head>
 <body>
 
-						<form action="bookController">
+						<form action="bookController" method="post">
 						<input type="hidden" name="c" value="ADD" />	
 						Enter Book Name<input type="text" name="name1"><br><br>
-						Enter ISBN<input type="text" name="isbn" value="Enter 10 Digit ISBN"><br><br>
-						Enter Price<input type="text" name="price" value="Enter price"><br><br>
+						Enter ISBN<input type="number" name="isbn" placeholder="Enter 10 Digit ISBN"><br><br>
+						Enter Price<input type="number" name="price" placeholder="Enter price"><br><br>
 						<c:if test="${not empty got}">
 						Select Publisher:
 						<select name="pid">
